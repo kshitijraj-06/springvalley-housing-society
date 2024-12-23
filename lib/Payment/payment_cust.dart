@@ -100,38 +100,52 @@ class _Payment_CustState extends State<Payment_Cust> {
                           child: Material(
                             borderRadius: BorderRadius.circular(12),
                             elevation: 3,
-                            child: Container(
-                              decoration: BoxDecoration(
-                                color: Colors.white,
-                                borderRadius: BorderRadius.circular(12),
-                              ),
-                              child: ListTile(
-                                contentPadding: EdgeInsets.all(16.0),
-                                title: Text(
-                                  'Month: $month',
-                                  style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 16,
-                                  ),
+                            child: GestureDetector(
+                              onTap: () {
+                                Navigator.pushNamed(context, '/detailed_payment');
+                              },
+                              child: Container(
+                                decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  borderRadius: BorderRadius.circular(12),
                                 ),
-                                subtitle: Text(
-                                  'Due Amount: ₹$dueAmount',
-                                  style: TextStyle(
-                                    fontSize: 14,
-                                    color: Colors.grey[700],
+                                child: ListTile(
+                                  contentPadding: EdgeInsets.all(16.0),
+                                  title: Text(
+                                    'Month: $month',
+                                    style: GoogleFonts.lora(
+                                      textStyle: TextStyle(
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.bold
+                                      )
+                                    )
                                   ),
-                                ),
-                                trailing: isPaid
-                                    ? Icon(Icons.check_circle, color: Colors.green, size: 30)
-                                    : ElevatedButton(
-                                  style: ElevatedButton.styleFrom(
-                                    backgroundColor: Colors.blueAccent,
-                                    shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(20),
+                                  subtitle: Text(
+                                    'Due Amount: ₹$dueAmount',
+                                    style: GoogleFonts.lora(
+                                        textStyle: TextStyle(
+                                            fontSize: 14,
+                                            color: Colors.grey.shade700
+                                        )
+                                    )
+                                  ),
+                                  trailing: isPaid
+                                      ? Icon(Icons.check_circle, color: Colors.green, size: 30)
+                                      : ElevatedButton(
+                                    style: ElevatedButton.styleFrom(
+                                      backgroundColor: Colors.indigo,
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(10),
+                                      ),
                                     ),
+                                    onPressed: () => _makePayment(payments[index].id),
+                                    child: Text('Pay Now',
+                                    style: GoogleFonts.lora(
+                                      textStyle: TextStyle(
+                                        color: Colors.white
+                                      )
+                                    ),),
                                   ),
-                                  onPressed: () => _makePayment(payments[index].id),
-                                  child: Text('Pay Now'),
                                 ),
                               ),
                             ),
